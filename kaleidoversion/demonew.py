@@ -38,7 +38,7 @@ class PluginChecker:
         print("无法访问任何远程服务器")
         return None
 
-    def get_remote_extensions(self, url, password="bjev666"):
+    def get_remote_extensions(self, url, password):
         """获取远程插件列表"""
         try:
             from urllib.parse import urlparse
@@ -341,7 +341,9 @@ def main():
     remote_url = checker.check_available_url()
 
     if remote_url:
-        remote_plugins = checker.get_remote_extensions(remote_url)
+        # 远程服务器的密码： password="XXXX"
+        password = input("请输入远程服务器密码: ")
+        remote_plugins = checker.get_remote_extensions(remote_url,password)
     else:
         remote_plugins = []
 
