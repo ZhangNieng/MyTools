@@ -342,13 +342,13 @@ class App(tk.Tk):
 
         tk.Label(auth_frame, text="邮箱：", font=("微软雅黑", 9)).grid(
             row=0, column=0, sticky="e")
-        self.email_var = tk.StringVar(value="XXXX")
+        self.email_var = tk.StringVar(value="XXXXXX")
         tk.Entry(auth_frame, textvariable=self.email_var, width=36,
                  font=("微软雅黑", 9)).grid(row=0, column=1, sticky="w", padx=(4,20))
 
         tk.Label(auth_frame, text="密码：", font=("微软雅黑", 9)).grid(
             row=0, column=2, sticky="e")
-        self.pwd_var = tk.StringVar(value="XXXX")
+        self.pwd_var = tk.StringVar(value="XXXXXX")
         tk.Entry(auth_frame, textvariable=self.pwd_var, width=16,
                  show="●", font=("微软雅黑", 9)).grid(row=0, column=3, sticky="w")
 
