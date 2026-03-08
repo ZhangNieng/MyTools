@@ -10,8 +10,8 @@ import sys
 
 # ===== 配置 =====
 LOGIN_URL = "https://ihub.testfarm.cn:8020/admin/login"
-EMAIL = "zhangning07@baicgroup.com.cn"
-PASSWORD = "000000"
+EMAIL = "XXXX"
+PASSWORD = "XXXX"
 PROJECT_NAME = "万花筒工具平台"
 TARGET_PERSON = "张宁(20260303-7670)"  # 后续可根据时间调整
 
