@@ -1,0 +1,90 @@
+Task: Automate Daily Report Submission
+Plan
+ Navigate to login page and identify selectors.
+ Login with credentials.
+ Navigate to '项目' (Projects).
+ Find '万花筒工具平台' and '...'.
+ Click '...' and find '查看工作项'. (Used '回到旧版' and clicked '20260303-7670' in work item list)
+ Extract content from '工作周报'. (Navigation complete, ready for content extraction)
+Findings (New Version)
+Login URL: https://ihub.testfarm.cn:8020/admin/login
+Username Selector: input[placeholder='邮箱']
+Password Selector: input[placeholder='密码']
+Login Button Selector: button.button.large.align-center.normal
+'项目' Selector: .el-menu-item:contains('项目')
+Project '万花筒工具平台' Row: span:contains('万花筒工具平台')
+'...' Button: .el-button.el-button--small.is-link next to project name.
+Findings (Old Version)
+'回到旧版' Button Selector: button:contains('回到旧版')
+Work Item '张宁(20260303-7670)' Selector: span:contains('20260303-7670') or row click.
+Work Item URL: https://ihub.testfarm.cn:8020/admin/workitems/[ID] (e.g., 479421)
+Difficulties
+The '...' popover in the new version is difficult to capture in the DOM using automated tools as it might be transient or rendered outside the main tree.
+Switching to the old version provides a more stable and easier-to-automate interface for finding specific work items.
+
+
+
+
+
+Task Checklist
+ Login to iHub.
+ Find "项目" (Projects) menu selector. (Likely index 24, /admin/vdp)
+ Find "万花筒工具平台" project row. (Not in "My Projects", checking "Org" or "All")
+ Get XPath for "..." button and "查看工作项" in that row.
+ Find "张宁(20260303-7670)" in Work Items page.
+ Get XPaths for "编辑" buttons and editor selectors for "周一日报" to "周日日报".
+Findings
+The "Login" page is at /admin/login.
+The "Work Items" page is at /admin/workitems/ofmine.
+The "Projects" icon in the sidebar is at index 24 (/admin/vdp).
+"万花筒工具平台" is an organization/department project found under index 20 (/admin/org).
+Current URL for target project might be related to /admin/org/ofmine/25 or similar.
+Need to find a table view with "..." as described by the user.
+
+
+
+
+
+
+Daily Report Automation Implementation Plan
+The goal is to create a Python script that automates the extraction of weekly daily report contents from the iHub platform for a specific user and week.
+
+Proposed Changes
+Automation Script
+[NEW] 
+daily_report.py
+A Python script using playwright to:
+
+Login to https://ihub.testfarm.cn:8020/admin/login.
+Navigate to "项目" (Projects).
+Find "万花筒工具平台" and click "查看工作项".
+Navigate through the hierarchy: "工具小组的日报" -> "2026年3月" -> "第一周(3.2-3.8)" -> "张宁(20260303-7670)".
+Extract markdown content for Wednesday to Sunday (or daily as requested).
+Output the content to the console or a file.
+Dependencies
+[NEW] 
+requirements.txt
+List of required Python libraries:
+
+playwright
+Verification Plan
+Automated Tests
+Run the script manually: python daily_report.py.
+Verify that it logs in correctly.
+Verify that it navigates to the correct work item.
+Verify that it extracts the markdown content for each day and prints it.
+Manual Verification
+Check the console output against the actual content on the website to ensure accuracy.
+
+
+Task: Automate Daily Report Extraction
+ Explore website and identify selectors
+ Login page exploration
+ Navigation to "Projects" and "Kaleidoscope Tool Platform"
+ Navigation to specific report week and person
+ Identify markdown content containers
+ Create implementation plan
+ Develop Python automation script
+ Create 
+requirements.txt
+Verify script functionality
